@@ -5,8 +5,288 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CISC_simulator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="1000" Width="1920" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Window.Resources>
+        <StreamGeometry x:Key="LeftArrow">M0,25 L25,0 25,13 50,13 50,37 25,37 25,50z</StreamGeometry>
+        <StreamGeometry x:Key="RightArrow">M50,25 L25,0 25,13 0,13 0,37 25,37 25,50z</StreamGeometry>
+        <StreamGeometry x:Key="UpArrow">M25,0 L0,25 13,25 13,50 37,50 37,25 50,25z</StreamGeometry>
+        <StreamGeometry x:Key="DownArrow">M25,50 L0,25 13,25 13,0 37,0 37,25 50,25z</StreamGeometry>
+    </Window.Resources>
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1000"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="Architecture" Background="LightGray">
+            <Grid x:Name="Registers" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,-50,0,0" Visibility="Visible" >
+                <Border BorderBrush="Black" BorderThickness="5" >
+                    <StackPanel Margin="5">
+                        <Label Content="REGISTERS" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" />
+                        <Label x:Name="R0Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R0" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R0Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R1Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R1" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R1Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R2Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R2" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R2Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R3Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R3" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R3Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R4Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R4" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R4Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R5Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R5" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R5Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R6Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R6" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R6Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R7Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R7" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R7Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R8Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R8" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R8Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R9Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R9" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R9Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R10Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R10" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R10Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R11Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R11" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R11Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R12Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R12" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R12Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R13Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R13" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R13Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R14Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R14" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R14Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                        <Label x:Name="R15Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,10">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="R15" Margin="0,0,5,0"/>
+                                <TextBlock x:Name="R15Value" Text="0000000000000000"/>
+                            </StackPanel>
+                        </Label>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid x:Name="BGC" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Gray" Margin="20,100,0,0" Visibility="Hidden">
+                <Border x:Name="BGCBorder"
+                BorderBrush="Black" BorderThickness="5"   Width="200" Height="200">
+                    <TextBlock Text="BGC" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" FontWeight="ExtraBlack"/>
+                </Border>
+            </Grid>
+            <Grid x:Name="Buses" >
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-250,-50,0,0">
+                    <Label x:Name="SBusLabel" Content="SBUS" FontSize="20" FontWeight="Bold"
+                       Margin="-30,-30,0,0"/>
+                    <Polyline x:Name="SBusLine"
+                Points="0,0 0,800"
+                StrokeThickness="10" Fill="Black" Stroke="Black"/>
+                    <Label x:Name="DBusLabel" Content="DBUS"
+                       FontSize="20" FontWeight="Bold"
+                       Margin="50,-30,0,0"
+                       />
+                    <Polyline x:Name="DBusLine"
+                Points="82,0 80,800"
+                StrokeThickness="10" Fill="Black" Stroke="Black"/>
+                </Grid>
+                <Label x:Name="RBusLabel" Content="RBUS"
+                       FontSize="20" FontWeight="Bold"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30"
+                       />
+                <Polyline x:Name="RBus" Points="100,940 940,940 940,275" StrokeThickness="10" Stroke="Black"/>
+            </Grid>
+            <Grid x:Name="Memory"  HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible" Margin="240,-750,0,0">
+                <Border x:Name="MemoryBorder"
+                BorderBrush="Black" BorderThickness="5" Width="250" Height="150">
+                    <Grid Background="Gray" >
+                        <Label x:Name="MemoryAddressLabel" Content="ADDRESS" Margin="10,15,0,0" FontSize="16" FontWeight="Bold"  />
+                        <Label x:Name="MemoryDataInLabel" Content="DATA IN" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,15" FontSize="16" FontWeight="Bold" />
+                        <Label x:Name="MemoryLabel" Content="MEMORY" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="15" FontSize="20" FontWeight="Bold" />
+                        <Label x:Name="MemoryDataOutLabel" Content="DATA OUT" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontSize="16" FontWeight="Bold" />
+
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid x:Name="BaseRegisters" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="200,0,0,0">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Label x:Name="IRLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="IR" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="IRValue" Text="0000000000000000"/>
+                        </StackPanel>
+                    </Label>
+                    <Label x:Name="MDRLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="MDR" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="MDRValue" Text="0000000000000000"/>
+                        </StackPanel>
+                    </Label>
+                    <Label x:Name="SPLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="SP" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="SPValue" Text="0000000000000000"/>
+                        </StackPanel>
+                    </Label>
+                    <Label x:Name="ADRLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="ADR" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="ADRValue" Text="0000000000000000"/>
+                        </StackPanel>
+                    </Label>
+                    <Label x:Name="TLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="T" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="TValue" Text="0000000000000000"/>
+                        </StackPanel>
+                    </Label>
+                    <Label x:Name="PCLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="PC" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="PCValue" Text="0000000000000000"/>
+                        </StackPanel>
+                    </Label>
+                    <Label x:Name="IVRLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="IVR" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="IVRValue" Text="0000000000000000"/>
+                        </StackPanel>
+                    </Label>
+                    <Label x:Name="FlagsLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="FLAG" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="FlagValue" Text="0000000000000000"/>
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="ALUGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="200,750,0,0">
+                <Polygon Points="0,0 60,0 80,20 100 0 160,0 120,70 40,70" StrokeThickness="5" Stroke="Black" />
+                <Label Content="S" FontSize="20" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="-80,-5,0,0"/>
+                <Label Content="D" FontSize="20" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="80,-5,0,0"/>
+                <Label Content="R" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,-5,0,0"/>
+                <TextBlock Text="ALU" TextWrapping="Wrap" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-5,0,0"/>
+            </Grid>
+            <Grid x:Name="FLAGMUXGrid" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="700,0,0,170">
+                <Polygon Points="0,0 -40,30 -40,90 0,120" StrokeThickness="5" Stroke="Black"/>
+                <TextBlock Text="MUX" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" Width="20" VerticalAlignment="Center" Margin="-35,-6,0,0"/>
+            </Grid>
+            <Grid x:Name="MDRMUXGrid" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="700,250,0,0">
+                <Polygon Points="0,0 -40,30 -40,90 0,120" StrokeThickness="5" Stroke="Black"/>
+                <TextBlock Text="MUX" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" Width="20" VerticalAlignment="Center" Margin="-35,-6,0,0"/>
+            </Grid>
+            <Grid x:Name="LINES">
+                <Path x:Name="RBusToRegisters" Data="{DynamicResource UpArrow}" Margin="149,886,832,24" Stretch="Fill" Stroke="Black" Fill="Black" Width="20"/>
+                <Path x:Name="ALUToRBus" Data="{DynamicResource DownArrow}" Fill="Black"  Height="50" Margin="200,873,0,0" Stretch="Fill" Width="20"/>
+                <Path x:Name="RegistersToSbus" Data="M40,25 L25,0 25,13 0,13 0,37 25,37 25,50z" Fill="Black" Margin="245,430.5,677,512.5" Stretch="Fill"/>
+                <Path x:Name="RegistersToDbus" Data="M 30,25 L25,0 25,13 0,13 0,37 25,37 25,50z" Fill="Black" Margin="245,474.5,598,468.5" Stretch="Fill"/>
+                <Path x:Name="IRToSBus" Data="M20,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Stretch="Fill" Margin="-185,-470,0,0" Height="16" Width="180" />
+                <Path x:Name="IRToDBus" Data="M15,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Margin="-105,-510,0,0" Stretch="Fill" Height="16" Width="102"/>
+                <Path x:Name="MDRToSBus" Data="M20,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Stretch="Fill" Margin="-185,-330,0,0" Height="16" Width="180" />
+                <Path x:Name="MDRToDBus" Data="M0,-3 L -40,-3 -40,-147 -15,-147 -15,-140 0,-150 -15,-160 -15,-153 -46,-153 -46,-3 -80,-3 -80,-10 -95,0 -80,10
+                      -80,3 0,3z" Fill="Black" Margin="98,-350,0,0" Height="16" Width="102" StrokeThickness="3" />
+                <Path x:Name="SPToSBus" Data="M20,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Stretch="Fill" Margin="-185,-190,0,0" Height="16" Width="180" />
+                <Path x:Name="SPToDBus" Data="M15,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Margin="-105,-220,0,0" Stretch="Fill" Height="16" Width="102"/>
+                <Path x:Name="ADRToSBus" Data="M -5,-3 L -117,-3 -117,-377 -15,-377 -15,-370 0,-380 -15,-390 
+                      -15,-383 -123,-383 -123,-3 -165,-3 -165,-10 -180,0 -165,10,-165,3 -5,3z" 
+                      Fill="Black"  Margin="500,460,0,0" StrokeThickness="3"/>
+                <Path x:Name="ADRToDBus" Data="M15,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Margin="-105,-80,0,0" Stretch="Fill" Height="16" Width="102"/>
+                <Path x:Name="TToSBus" Data="M20,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Stretch="Fill" Margin="-185,90,0,0" Height="16" Width="180" />
+                <Path x:Name="TToDBus" Data="M15,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Margin="-105,60,0,0" Stretch="Fill" Height="16" Width="102"/>
+                <Path x:Name="PCToSBus" Data="M20,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Stretch="Fill" Margin="-185,230,0,0" Height="16" Width="180" />
+                <Path x:Name="PCToDBus" Data="M15,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Margin="-105,200,0,0" Stretch="Fill" Height="16" Width="102"/>
+                <Path x:Name="IVRToSBus" Data="M20,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Stretch="Fill" Margin="-185,370,0,0" Height="16" Width="180" />
+                <Path x:Name="IVRToDBus" Data="M15,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Margin="-105,340,0,0" Stretch="Fill" Height="16" Width="102"/>
+                <Path x:Name="FLAGToSBus" Data="M20,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Stretch="Fill" Margin="-185,510,0,0" Height="16" Width="180" />
+                <Path x:Name="FLAGToDBus" Data="M15,25 L25,0 25,13 50,13 50,37 25,37 25,50z" Fill="Black" Margin="-105,480,0,0" Stretch="Fill" Height="16" Width="102"/>
+                <Path x:Name="DBusToAluD" Data="M 0,-3 L253,-3 253,20 260,20 250,40 240,20 247,20 247,3 0,3z" Fill="Black" StrokeThickness="3" Margin="200,645,0,0" Width="400" Height="50"/>
+                <Path x:Name="SBusToAluD" Data="M 20,-3 L253,-3 253,10 260,10 250,30 240,10 247,10 247,3 20,3z" Fill="Black" StrokeThickness="3" Margin="0,665,0,0" Width="400" Height="50"/>
+                <Path x:Name="MUXToMDR" Data="M 0,-3 -90,-3 -90,-10 -107,0 -90,10 -90,3 0,3z" StrokeThickness="3" Fill="Black" Margin="810,305,0,0"/>
+                <Path x:Name="MUXToFLAG" Data="M 0,-3 -90,-3 -90,-10 -107,0 -90,10 -90,3 0,3z" StrokeThickness="3" Fill="Black" Margin="810,730,0,0"/>
+                <Path x:Name="RBusToMDRMux" Data="M 0,-3 L -80,-3 -80,-10 -90,0 -80,10 -80,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,340,0,0"/>
+                <Path x:Name="RBusToFLAGMux" Data="M 0,-3 L -80,-3 -80,-10 -90,0 -80,10 -80,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,710,0,0"/>
+                <Path x:Name="DataOut" Data="M0,-3 L 153,-3 153,173 125,173 125,180 110,170
+                      125,160 125,167 147,167 147,133 -25,133 -25,140 -35,130 -25,120 -25,127 147,127 147,3 0,3z "
+                      StrokeThickness="3" Fill="Black" Margin="740,110,0,0"/>
+                <Path x:Name="COND" Data="M -35,-3 187,-3 187,-77 160,-77 160,-70 150,-80 160,-90 160,-83 193,-83 193,3 -39,3z" StrokeThickness="3" Fill="Black" Margin="700,850,0,0"/>
+                <Path x:Name="RBUSToSP" Data="M0,-3 L -220,-3 -220,-10 -235,0 -220,10 -220,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,380,0,0"/>
+                <Path x:Name="RBUSToADR" Data="M0,-3 L -220,-3 -220,-10 -235,0 -220,10 -220,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,450,0,0"/>
+                <Path x:Name="RBUSToT" Data="M0,-3 L -220,-3 -220,-10 -235,0 -220,10 -220,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,520,0,0"/>
+                <Path x:Name="RBUSToPC" Data="M0,-3 L -220,-3 -220,-10 -235,0 -220,10 -220,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,590,0,0"/>
+                <Path x:Name="RBUSToIVR" Data="M0,-3 L -220,-3 -220,-10 -235,0 -220,10 -220,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,660,0,0"/>
+            </Grid>
+
+        </Grid>
+        <Grid x:Name="ControlsGrid" Grid.Column="1" Background="DarkGray">
+            <Grid x:Name="AssemblyGrid" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="Selected Assembly None:" FontSize="20" FontWeight="Bold" Margin="0,0,20,0"/>
+                    <Label x:Name="SelectedFileLabel" Content="None" FontSize="20" FontWeight="Bold" Margin="0,0,20,0"/>
+                    <Button x:Name="SelectFileButton" Content="Select File" Height="20" Margin="0,0,0,0" Click="SelectFileButton_Click"/>
+                    <Button x:Name="AssembleButton" Content="Assemble" Height="20" Margin="15,0" Click="AssembleButton_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="ConsoleGrid" Height="200" VerticalAlignment="Bottom">
+                <ScrollViewer>
+                    <TextBlock x:Name="Console" Background="Black" Foreground="#FF5DFF00" Padding="10" FontSize="15">
+                    </TextBlock>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
     </Grid>
 </Window>

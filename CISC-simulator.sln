@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CISC-simulator", "CISC-simulator\CISC-simulator.csproj", "{FD234CA2-85E7-485C-B384-C4AAD0FD99DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly", "Assembler\Assembly.csproj", "{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FD234CA2-85E7-485C-B384-C4AAD0FD99DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD234CA2-85E7-485C-B384-C4AAD0FD99DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD234CA2-85E7-485C-B384-C4AAD0FD99DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
