@@ -22,8 +22,10 @@ namespace CISC_simulator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private String selectedFile = "";
+        ushort[] memory = new ushort[65536];
         
+        private String selectedFile = "";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace CISC_simulator
         public void Log(string message)
         {
             var time = DateTime.Now.ToLongTimeString();
-            Console.Inlines.Add( time + " : " + message + Environment.NewLine);
+            Console.Inlines.Add(time + " : " + message + Environment.NewLine);
         }
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
@@ -51,7 +53,7 @@ namespace CISC_simulator
             if (selectedFile != null)
             {
                 Log("Initializing Assembly process");
-                Assembler assembler = new Assembler();
+                Assembler assembler = new Assembler(memory);
                 assembler.ReadFromFile(selectedFile);
                 Log("Successfully read contents of file");
                 Log("Parsing...");

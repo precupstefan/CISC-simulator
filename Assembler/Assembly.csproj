@@ -42,9 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="enums\AccessMode.cs" />
     <Compile Include="enums\ClassCodification.cs" />
     <Compile Include="enums\InstructionsValue.cs" />
+    <Compile Include="enums\Registers.cs" />
+    <Compile Include="exceptions\AccessModeException.cs" />
     <Compile Include="helpers\InstructionHelper.cs" />
+    <Compile Include="helpers\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

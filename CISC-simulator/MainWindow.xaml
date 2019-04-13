@@ -149,7 +149,7 @@
                        />
                 <Polyline x:Name="RBus" Points="100,940 940,940 940,275" StrokeThickness="10" Stroke="Black"/>
             </Grid>
-            <Grid x:Name="Memory"  HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible" Margin="240,-750,0,0">
+            <Grid x:Name="MemoryGrid"  HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible" Margin="240,-750,0,0">
                 <Border x:Name="MemoryBorder"
                 BorderBrush="Black" BorderThickness="5" Width="250" Height="150">
                     <Grid Background="Gray" >

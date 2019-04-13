@@ -2,27 +2,34 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Assembly.enums;
+using Assembly.exceptions;
 using Assembly.helpers;
 
 namespace Assembly
 {
-
     public class Assembler
     {
         private List<string> instructions = new List<string>();
+        private ushort[] memory;
+        private ushort pc = 0;
+        private ushort pcIncrement = 1;
+
+        public Assembler(ushort[] memory)
+        {
+            this.memory = memory;
+        }
 
         public void ReadFromFile(string path)
         {
-            string[] lines = File.ReadAllLines(path);
+            var lines = File.ReadAllLines(path);
             foreach (var line in lines)
             {
                 if (line.Contains('#'))
                 {
                     continue;
                 }
+
                 instructions.Add(line.ToUpper());
             }
         }
@@ -34,16 +41,200 @@ namespace Assembly
 
         public void Assemble()
         {
-            foreach (string line in instructions)
+            foreach (var line in instructions)
             {
-                string[] keywords = line.Split(' ');
-                var instructionValue = Enum.Parse(typeof(InstructionsValue), keywords[0]);
-                ushort instruction = (ushort)instructionValue;
-                InstructionHelper.GetInstructionClass(instruction);
+                var instruction = AssembleInstruction(line);
+                memory[pc] = instruction;
+                pc += pcIncrement;
+                pcIncrement = 1;
             }
         }
 
+        private ushort GetInstruction(string operation)
+        {
+            if (operation == null) throw new ArgumentNullException(nameof(operation));
+            var instructionValue = Enum.Parse(typeof(InstructionsValue), operation);
+            var instruction = (ushort) instructionValue;
+            return instruction;
+        }
+
+        private ushort AssembleInstruction(string line)
+        {
+            var keywords = line.Split(' ');
+            var instruction = GetInstruction(keywords[0]);
+            switch (InstructionHelper.GetInstructionClass(instruction))
+            {
+                case ClassCodification.B1:
+                    instruction = AssembleInstructionB1(instruction, keywords);
+                    break;
+                case ClassCodification.B2:
+                    break;
+                case ClassCodification.B3:
+                    break;
+                case ClassCodification.B4:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return instruction;
+        }
+
+        private ushort AssembleInstructionB1(ushort instruction, string[] keywords)
+        {
+            instruction = ManageSourceRegister(instruction, keywords[2]);
+            instruction = ManageDestinationRegister(instruction, keywords[1]);
+            return instruction;
+        }
+
+        private ushort ManageSourceRegister(ushort instruction, string sourceRegister)
+        {
+            instruction = AddMASToInstruction(instruction, sourceRegister);
+            instruction = ManageRegister(instruction, sourceRegister, 6);
+
+            return instruction;
+        }
+
+        private ushort ManageDestinationRegister(ushort instruction, string destinationRegister)
+        {
+            instruction = AddMADToInstruction(instruction, destinationRegister);
+            instruction = ManageRegister(instruction, destinationRegister, 0);
+
+            return instruction;
+        }
+        
+        
+        private ushort AddMASToInstruction(ushort instruction, string operand)
+        {
+            switch (GetAccessMode(operand))
+            {
+                case AccessMode.IMMEDIATE:
+                    return instruction;
+                case AccessMode.DIRECT:
+                    instruction = (ushort) (instruction | 0x0400);
+                    return instruction;
+                case AccessMode.INDIRECT:
+                    instruction = (ushort) (instruction | 0x0800);
+                    return instruction;
+                case AccessMode.INDEXED:
+                    instruction = (ushort) (instruction | 0x0C00);
+                    return instruction;
+                default:
+                    throw new AccessModeException("Unknown or illegal access mode for destination register");
+            }
+        }
+
+        private ushort AddMADToInstruction(ushort instruction, string operand)
+        {
+            switch (GetAccessMode(operand))
+            {
+                case AccessMode.DIRECT:
+                    instruction = (ushort) (instruction | 0x0010);
+                    return instruction;
+                case AccessMode.INDIRECT:
+                    instruction = (ushort) (instruction | 0x0020);
+                    return instruction;
+                case AccessMode.INDEXED:
+                    instruction = (ushort) (instruction | 0x0030);
+                    return instruction;
+                default:
+                    throw new AccessModeException("Unknown or illegal access mode for destination register");
+            }
+        }
+
+        private AccessMode GetAccessMode(string register)
+        {
+            if (!register.StartsWith("(") && !register.StartsWith("R"))
+            {
+                if (register.Contains("R"))
+                {
+                    return AccessMode.INDEXED;
+                }
+            }
+
+            if (register.StartsWith("("))
+            {
+                return AccessMode.INDIRECT;
+            }
+
+            return register.StartsWith("R") ? AccessMode.DIRECT : AccessMode.IMMEDIATE;
+        }
+
+        private ushort ManageRegister(ushort instruction, string register, int bitsToShift)
+        {
+            switch (InstructionHelper.GetAddressingMode(instruction, bitsToShift))
+            {
+                case AccessMode.IMMEDIATE:
+                    throw new AccessModeException($"Immediate access invalid for {register}");
+                    break;
+                case AccessMode.DIRECT:
+                    instruction = AddRegisterToInstruction(instruction, register, bitsToShift);
+                    break;
+                case AccessMode.INDIRECT:
+                    instruction = AddIndirectAccessToInstruction(instruction, register, bitsToShift);
+                    break;
+                case AccessMode.INDEXED:
+                    instruction = AddIndexedAccessToInstruction(instruction, register, bitsToShift);
+                    break;
+                default:
+                    throw new AccessModeException($"{register} has no known access mode");
+            }
+
+            return instruction;
+        }
+
+        private ushort AddIndexedAccessToInstruction(ushort instruction, string register, int bitsToShift)
+        {
+            var keywords = register.Split('(');
+
+            AddValueToMemory(keywords[0]);
+
+            register = StringHelper.RemoveAtFirstChar(keywords[1], ')');
+
+            var shiftedRegisterNumber = GetShiftedRegisterNumber(register, bitsToShift);
+
+            instruction = (ushort) (instruction | shiftedRegisterNumber);
+
+            return instruction;
+        }
+
+        private ushort AddIndirectAccessToInstruction(ushort instruction, string register, int bitsToShift)
+        {
+            register = register.Replace("(", "");
+            register = StringHelper.RemoveAtFirstChar(register, ')');
+            var shiftedRegisterNumber = GetShiftedRegisterNumber(register, bitsToShift);
+            instruction = (ushort) (instruction | shiftedRegisterNumber);
+            return instruction;
+        }
+
+        private ushort AddRegisterToInstruction(ushort instruction, string register, int bitsToShift)
+        {
+            var shiftedRegisterNumber = GetShiftedRegisterNumber(register, bitsToShift);
+            instruction = (ushort) (instruction | shiftedRegisterNumber);
+            return instruction;
+        }
+
+        private void AddValueToMemory(string value)
+        {
+            var _value = Convert.ToUInt16(value);
+            memory[pc + pcIncrement] = _value;
+            pcIncrement++;
+        }
+
+        private ushort GetRegisterNumber(string register)
+        {
+            var registerType = Enum.Parse(typeof(Registers), register);
+            var registerNumber = (ushort) registerType;
+            return registerNumber;
+        }
+
+        private ushort GetShiftedRegisterNumber(string register, int bitsToShift)
+        {
+            var registerNumber = GetRegisterNumber(register);
+
+            var shiftedRegisterNumber = (ushort) (registerNumber << bitsToShift);
+            return shiftedRegisterNumber;
+        }
+
     }
-
-
 }
