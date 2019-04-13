@@ -68,6 +68,7 @@ namespace Assembly
                     instruction = AssembleInstructionB1(instruction, keywords);
                     break;
                 case ClassCodification.B2:
+                    instruction = AssembleInstructionB2(instruction, keywords[1]);
                     break;
                 case ClassCodification.B3:
                     break;
@@ -84,6 +85,12 @@ namespace Assembly
         {
             instruction = ManageSourceRegister(instruction, keywords[2]);
             instruction = ManageDestinationRegister(instruction, keywords[1]);
+            return instruction;
+        }
+
+        private ushort AssembleInstructionB2(ushort instruction, string destinationRegister)
+        {
+            instruction = ManageDestinationRegister(instruction, destinationRegister);
             return instruction;
         }
 
@@ -137,6 +144,8 @@ namespace Assembly
                 case AccessMode.INDEXED:
                     instruction = (ushort) (instruction | 0x0030);
                     return instruction;
+                case AccessMode.IMMEDIATE:
+                    return instruction;
                 default:
                     throw new AccessModeException("Unknown or illegal access mode for destination register");
             }
@@ -165,7 +174,7 @@ namespace Assembly
             switch (InstructionHelper.GetAddressingMode(instruction, bitsToShift))
             {
                 case AccessMode.IMMEDIATE:
-                    throw new AccessModeException($"Immediate access invalid for {register}");
+                    AddValueToMemory(register);
                     break;
                 case AccessMode.DIRECT:
                     instruction = AddRegisterToInstruction(instruction, register, bitsToShift);
