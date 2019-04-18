@@ -14,6 +14,8 @@ namespace Assembly
         private ushort[] memory;
         private ushort pc = 0;
         private ushort pcIncrement = 1;
+        private Dictionary<string, int> label = new Dictionary<string, int>();
+        private Dictionary<int, string> flaggedInstructionsForLabel = new Dictionary<int, string>();
 
         public Assembler(ushort[] memory)
         {
@@ -43,11 +45,21 @@ namespace Assembly
         {
             foreach (var line in instructions)
             {
+                if (line.Contains(':'))
+                {
+                    var labelName = line.Remove(line.Length - 1);
+                    label.Add(labelName, pc);
+                    continue;
+                }
+
                 var instruction = AssembleInstruction(line);
                 memory[pc] = instruction;
                 pc += pcIncrement;
                 pcIncrement = 1;
             }
+
+            if (flaggedInstructionsForLabel.Count != 0)
+                AddMissingLabelsToInstructions();
         }
 
         private ushort GetInstruction(string operation)
@@ -71,8 +83,10 @@ namespace Assembly
                     instruction = AssembleInstructionB2(instruction, keywords[1]);
                     break;
                 case ClassCodification.B3:
+                    instruction = AssembleInstructionB3(instruction, keywords[1]);
                     break;
                 case ClassCodification.B4:
+                    return instruction;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -94,6 +108,26 @@ namespace Assembly
             return instruction;
         }
 
+        private ushort AssembleInstructionB3(ushort instruction, string labelName)
+        {
+            instruction = (ushort) (instruction | CalculateOffset(labelName));
+            return instruction;
+        }
+
+        private byte CalculateOffset(string labelName)
+        {
+            if (label.ContainsKey(labelName))
+            {
+                var offset = label[labelName] - pc;
+                return (byte) (offset >= -128
+                    ? offset
+                    : throw new ArgumentOutOfRangeException($"Distance to {labelName} greater than 128"));
+            }
+
+            flaggedInstructionsForLabel.Add(pc, labelName);
+            return 0;
+        }
+
         private ushort ManageSourceRegister(ushort instruction, string sourceRegister)
         {
             instruction = AddMASToInstruction(instruction, sourceRegister);
@@ -109,8 +143,8 @@ namespace Assembly
 
             return instruction;
         }
-        
-        
+
+
         private ushort AddMASToInstruction(ushort instruction, string operand)
         {
             switch (GetAccessMode(operand))
@@ -245,5 +279,25 @@ namespace Assembly
             return shiftedRegisterNumber;
         }
 
+        private void AddMissingLabelsToInstructions()
+        {
+            foreach (var flaggedInstruction in flaggedInstructionsForLabel)
+            {
+                if (!label.ContainsKey(flaggedInstruction.Value))
+                {
+                    throw new IndexOutOfRangeException($"no defined label start for label {flaggedInstruction.Value}");
+                }
+
+                var instructionPosition = flaggedInstruction.Key;
+                var desiredPosition = label[flaggedInstruction.Value];
+                var offset = desiredPosition > instructionPosition ? desiredPosition - instructionPosition : instructionPosition - desiredPosition;
+                if (offset > 127 || offset < -128)
+                {
+                    throw new OffsetOutOfRangeException($"Label {flaggedInstruction.Value} is too far away");
+                }
+
+                memory[instructionPosition] = (ushort) (memory[instructionPosition] | (sbyte) offset);
+            }
+        }
     }
 }

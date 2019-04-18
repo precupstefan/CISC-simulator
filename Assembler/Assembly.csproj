@@ -47,6 +47,7 @@
     <Compile Include="enums\InstructionsValue.cs" />
     <Compile Include="enums\Registers.cs" />
     <Compile Include="exceptions\AccessModeException.cs" />
+    <Compile Include="exceptions\OffsetOutOfRangeException.cs" />
     <Compile Include="helpers\InstructionHelper.cs" />
     <Compile Include="helpers\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
