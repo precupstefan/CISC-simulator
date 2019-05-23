@@ -1,1 +1,6 @@
-ASL R0 R1
+ceapa:
+br ceva
+ADD (R6) R0	
+ceva:
+MOV R0 R1
+br ceapa

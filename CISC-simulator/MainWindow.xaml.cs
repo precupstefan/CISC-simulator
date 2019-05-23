@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Assembly;
+using Microcode;
 
 namespace CISC_simulator
 {
@@ -22,14 +23,29 @@ namespace CISC_simulator
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        MPM mpms = new MPM();
         ushort[] memory = new ushort[65536];
-        
+        Registers registers = new Registers();
         private String selectedFile = "";
+//        private string something = "ANA ARE MERE";
+//
+//        public string smth
+//        {
+//            get => something;
+//            set
+//            {
+//                something = value;
+//                
+//            }
+//        }
 
         public MainWindow()
         {
             InitializeComponent();
             Log("Application started");
+            DataContext = registers;
+            
         }
 
         public void Log(string message)
@@ -41,11 +57,10 @@ namespace CISC_simulator
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            if (fileDialog.ShowDialog() == true)
-            {
-                selectedFile = fileDialog.FileName;
-                Log($"File '{fileDialog.SafeFileName}' has been selected");
-            }
+            if (fileDialog.ShowDialog() != true) return;
+            selectedFile = fileDialog.FileName;
+            SelectedFileLabel.Content = fileDialog.SafeFileName;
+            Log($"File '{fileDialog.SafeFileName}' has been selected");
         }
 
         private void AssembleButton_Click(object sender, RoutedEventArgs e)
@@ -59,6 +74,11 @@ namespace CISC_simulator
                 Log("Parsing...");
                 assembler.Assemble();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

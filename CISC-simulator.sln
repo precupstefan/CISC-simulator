@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CISC-simulator", "CISC-simulator\CISC-simulator.csproj", "{FD234CA2-85E7-485C-B384-C4AAD0FD99DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly", "Assembler\Assembly.csproj", "{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microcode", "Microcode\Microcode.csproj", "{083B0122-ECD6-47CB-BB41-4FD794778AFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083B0122-ECD6-47CB-BB41-4FD794778AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083B0122-ECD6-47CB-BB41-4FD794778AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083B0122-ECD6-47CB-BB41-4FD794778AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{083B0122-ECD6-47CB-BB41-4FD794778AFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

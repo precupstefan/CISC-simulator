@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71CB7C37-A28E-4D0D-B140-677D1EE7A6E3}</ProjectGuid>
+    <ProjectGuid>{083B0122-ECD6-47CB-BB41-4FD794778AFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Assembly</RootNamespace>
-    <AssemblyName>Assembly</AssemblyName>
+    <RootNamespace>Microcode</RootNamespace>
+    <AssemblyName>Microcode</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,15 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
-    <Compile Include="enums\AccessMode.cs" />
-    <Compile Include="enums\ClassCodification.cs" />
-    <Compile Include="enums\InstructionsValue.cs" />
-    <Compile Include="enums\Registers.cs" />
-    <Compile Include="exceptions\AccessModeException.cs" />
-    <Compile Include="exceptions\OffsetOutOfRangeException.cs" />
-    <Compile Include="helpers\InstructionHelper.cs" />
-    <Compile Include="helpers\StringHelper.cs" />
+    <Compile Include="MPM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
