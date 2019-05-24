@@ -3,20 +3,22 @@ using System.ComponentModel;
 using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using CISC_simulator.Annotations;
+using Microcode.Annotations;
 
-namespace CISC_simulator
+namespace Microcode
 {
     public class Registers : INotifyPropertyChanged
     {
-        private bool _displayHex = false;
+        public static Registers Instance { get; } = new Registers();
 
-        public bool displayHEX
+        private bool displayHex = false;
+
+        public bool DisplayHex
         {
-            get => _displayHex;
+            get => displayHex;
             set
             {
-                _displayHex = value;
+                displayHex = value;
                 RaisePropertyChanged("Architecture");
             }
         }
@@ -41,7 +43,7 @@ namespace CISC_simulator
         public ushort _PC = 0;
         public ushort _IVR = 0;
         public ushort _ADR = 0;
-        public ushort _MDR = 0;
+        public short _MDR = 0;
         public ushort _IR = 0;
 
 
@@ -57,7 +59,7 @@ namespace CISC_simulator
             }
         }
 
-        public short Flags
+        public ushort Flags
         {
             get => _Flags;
             set
@@ -117,7 +119,7 @@ namespace CISC_simulator
             }
         }
 
-        public ushort MDR
+        public short MDR
         {
             get => _MDR;
             set
@@ -176,7 +178,7 @@ namespace CISC_simulator
 
         private string ConvertToStringAsBinOrHex<T>(T variable)
         {
-            return _displayHex ? ConvertToStringAsHex(variable) : ConvertToStringAsBin(variable);
+            return displayHex ? ConvertToStringAsHex(variable) : ConvertToStringAsBin(variable);
         }
 
         private string ConvertToStringAsBin<T>(T variable)
@@ -205,15 +207,16 @@ namespace CISC_simulator
             }
         }
 
-        public virtual void RaisePropertyChanged(string propertyName)
+        public void RaisePropertyChanged(string propertyName)
         {
             OnPropertyChanged(propertyName);
         }
 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

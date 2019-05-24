@@ -266,7 +266,7 @@ namespace Assembly
 
         private ushort GetRegisterNumber(string register)
         {
-            var registerType = Enum.Parse(typeof(Registers), register);
+            var registerType = Enum.Parse(typeof(GeneralRegisters), register);
             var registerNumber = (ushort) registerType;
             return registerNumber;
         }

@@ -1,6 +1,6 @@
 namespace Assembly.enums
 {
-    public enum Registers : ushort
+    public enum GeneralRegisters : ushort
     {
         R0 = 0,
         R1 = 1,

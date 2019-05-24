@@ -46,7 +46,7 @@
     <Compile Include="enums\AccessMode.cs" />
     <Compile Include="enums\ClassCodification.cs" />
     <Compile Include="enums\InstructionsValue.cs" />
-    <Compile Include="enums\Registers.cs" />
+    <Compile Include="enums\GeneralRegisters.cs" />
     <Compile Include="exceptions\AccessModeException.cs" />
     <Compile Include="exceptions\OffsetOutOfRangeException.cs" />
     <Compile Include="helpers\InstructionHelper.cs" />
