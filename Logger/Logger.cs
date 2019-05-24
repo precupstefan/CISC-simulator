@@ -15,10 +15,30 @@ namespace Logger
             Console = console;
         }
         
-        public void Log(string message)
+        public void Info(string message)
         {
             var time = DateTime.Now.ToLongTimeString();
             Console.Inlines.Add(time + " : " + message + Environment.NewLine);
         }
+        
+        public void Warning(string message)
+        {
+            var time = DateTime.Now.ToLongTimeString();
+            Console.Inlines.Add(time + " : " + message + Environment.NewLine);
+        }
+        
+        public void Error(string message)
+        {
+            var time = DateTime.Now.ToLongTimeString();
+            Console.Inlines.Add(time + " : " + message + Environment.NewLine);
+        }
+        
+        public void Critical(string message)
+        {
+            var time = DateTime.Now.ToLongTimeString();
+            Console.Inlines.Add(time + " : " + message + Environment.NewLine);
+        }
+        
+        
     }
 }

@@ -29,17 +29,6 @@ namespace CISC_simulator
         Registers registers = new Registers();
 
         private String selectedFile = "";
-//        private string something = "ANA ARE MERE";
-//
-//        public string smth
-//        {
-//            get => something;
-//            set
-//            {
-//                something = value;
-//                
-//            }
-//        }
 
         private Logger.Logger Logger = global::Logger.Logger.Instance;
 
@@ -47,7 +36,7 @@ namespace CISC_simulator
         {
             InitializeComponent();
             Logger.SetConsole(Console);
-            Logger.Log("Application started");
+            Logger.Info("Application started");
             DataContext = registers;
         }
 
@@ -58,16 +47,20 @@ namespace CISC_simulator
             if (fileDialog.ShowDialog() != true) return;
             selectedFile = fileDialog.FileName;
             SelectedFileLabel.Content = fileDialog.SafeFileName;
-            Logger.Log($"File '{fileDialog.SafeFileName}' has been selected");
+            Logger.Info($"File '{fileDialog.SafeFileName}' has been selected");
         }
 
         private void AssembleButton_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedFile != null)
+            if (selectedFile != "")
             {
                 Assembler assembler = new Assembler();
                 assembler.ReadFromFile(selectedFile);
                 assembler.Assemble();
+            }
+            else
+            {
+                Logger.Warning("Assembly aborted, there was no file selected");
             }
         }
 

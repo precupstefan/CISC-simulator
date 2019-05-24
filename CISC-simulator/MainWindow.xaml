@@ -267,7 +267,7 @@
                 <Path x:Name="RBUSToT" Data="M0,-3 L -220,-3 -220,-10 -235,0 -220,10 -220,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,520,0,0"/>
                 <Path x:Name="RBUSToPC" Data="M0,-3 L -220,-3 -220,-10 -235,0 -220,10 -220,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,590,0,0"/>
                 <Path x:Name="RBUSToIVR" Data="M0,-3 L -220,-3 -220,-10 -235,0 -220,10 -220,3 0,3z" StrokeThickness="3" Fill="Black" Margin="940,660,0,0"/>
-                <CheckBox x:Name="HexCheckBox" Content="Display HEX values" IsChecked="{Binding DisplayHEX, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,32,0,0"/>
+                <CheckBox x:Name="HexCheckBox" Content="Display HEX values" IsChecked="{Binding DisplayHex, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,32,0,0"/>
             </Grid>
 
         </Grid>

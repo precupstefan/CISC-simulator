@@ -22,12 +22,12 @@ namespace Assembly
         
         public Assembler()
         {
-            Logger.Log("Initializing Assembly process");
+            Logger.Info("Initializing Assembly process");
         }
 
         public void ReadFromFile(string path)
         {
-            Logger.Log("Reading from file...");
+            Logger.Info("Reading from file...");
             var lines = File.ReadAllLines(path);
             foreach (var line in lines)
             {
@@ -38,7 +38,7 @@ namespace Assembly
 
                 instructions.Add(line.ToUpper());
             }
-            Logger.Log("Successfully read contents of file");
+            Logger.Info("Successfully read contents of file");
         }
 
         public List<string> GetInstructions()
@@ -48,7 +48,7 @@ namespace Assembly
 
         public void Assemble()
         {
-            Logger.Log("Starting assembly process...");
+            Logger.Info("Starting assembly process...");
             foreach (var line in instructions)
             {
                 if (line.Contains(':'))
@@ -67,7 +67,7 @@ namespace Assembly
             if (flaggedInstructionsForLabel.Count != 0)
                 AddMissingLabelsToInstructions();
             
-            Logger.Log("Assembly complete!");
+            Logger.Info("Assembly complete!");
         }
 
         private ushort GetInstruction(string operation)
