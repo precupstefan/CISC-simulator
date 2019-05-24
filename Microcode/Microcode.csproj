@@ -41,8 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="enums\AluOperations.cs" />
+    <Compile Include="enums\DBusOperations.cs" />
+    <Compile Include="enums\IndexValues.cs" />
+    <Compile Include="enums\JumpyStuff.cs" />
+    <Compile Include="enums\MemoryOperations.cs" />
+    <Compile Include="enums\RBusOperations.cs" />
+    <Compile Include="enums\SBusOperations.cs" />
+    <Compile Include="enums\ShiftAndOtherOperations.cs" />
     <Compile Include="MPM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="classes" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
