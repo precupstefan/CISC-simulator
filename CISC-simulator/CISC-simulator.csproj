@@ -128,9 +128,13 @@
       <Project>{71cb7c37-a28e-4d0d-b140-677d1ee7a6e3}</Project>
       <Name>Assembly</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Microcode\Microcode.csproj">
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{3239742c-b5c7-426f-be3a-c3c5c5ab8c7a}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microcode\Architecture.csproj">
       <Project>{083b0122-ecd6-47cb-bb41-4fd794778aff}</Project>
-      <Name>Microcode</Name>
+      <Name>Architecture</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

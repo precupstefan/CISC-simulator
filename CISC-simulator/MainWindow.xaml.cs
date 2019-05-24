@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Assembly;
 using Microcode;
+using Microcode.classes;
+using Logger;
 
 namespace CISC_simulator
 {
@@ -23,10 +25,9 @@ namespace CISC_simulator
     /// </summary>
     public partial class MainWindow : Window
     {
-
         MPM mpms = new MPM();
-        ushort[] memory = new ushort[65536];
         Registers registers = new Registers();
+
         private String selectedFile = "";
 //        private string something = "ANA ARE MERE";
 //
@@ -40,45 +41,46 @@ namespace CISC_simulator
 //            }
 //        }
 
+        private Logger.Logger Logger = global::Logger.Logger.Instance;
+
         public MainWindow()
         {
             InitializeComponent();
-            Log("Application started");
+            Logger.SetConsole(Console);
+            Logger.Log("Application started");
             DataContext = registers;
-            
-        }
-
-        public void Log(string message)
-        {
-            var time = DateTime.Now.ToLongTimeString();
-            Console.Inlines.Add(time + " : " + message + Environment.NewLine);
         }
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
+            registers.SP = 44;
             OpenFileDialog fileDialog = new OpenFileDialog();
             if (fileDialog.ShowDialog() != true) return;
             selectedFile = fileDialog.FileName;
             SelectedFileLabel.Content = fileDialog.SafeFileName;
-            Log($"File '{fileDialog.SafeFileName}' has been selected");
+            Logger.Log($"File '{fileDialog.SafeFileName}' has been selected");
         }
 
         private void AssembleButton_Click(object sender, RoutedEventArgs e)
         {
             if (selectedFile != null)
             {
-                Log("Initializing Assembly process");
-                Assembler assembler = new Assembler(memory);
+                Assembler assembler = new Assembler();
                 assembler.ReadFromFile(selectedFile);
-                Log("Successfully read contents of file");
-                Log("Parsing...");
                 assembler.Assemble();
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+        }
 
+        private void StepButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void RunButton_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

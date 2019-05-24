@@ -41,20 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="classes\ADRRegister.cs" />
+    <Compile Include="classes\ALU.cs" />
     <Compile Include="classes\Bus\Bus.cs" />
     <Compile Include="classes\Bus\DBus.cs" />
     <Compile Include="classes\Bus\RBus.cs" />
     <Compile Include="classes\Bus\SBus.cs" />
-    <Compile Include="classes\AbstractRegister.cs" />
-    <Compile Include="classes\FLAGRegister.cs" />
-    <Compile Include="classes\GeneralRegisters.cs" />
-    <Compile Include="classes\IRRegister.cs" />
-    <Compile Include="classes\IVRRegister.cs" />
-    <Compile Include="classes\MDRRegister.cs" />
-    <Compile Include="classes\PCRegister.cs" />
-    <Compile Include="classes\SPRegister.cs" />
-    <Compile Include="classes\TRegister.cs" />
+    <Compile Include="classes\Memory.cs" />
+    <Compile Include="classes\Registers\AbstractRegister.cs" />
+    <Compile Include="classes\Registers\ADRRegister.cs" />
+    <Compile Include="classes\Registers\FLAGRegister.cs" />
+    <Compile Include="classes\Registers\GeneralRegisters.cs" />
+    <Compile Include="classes\Registers\IRRegister.cs" />
+    <Compile Include="classes\Registers\IVRRegister.cs" />
+    <Compile Include="classes\Registers\MDRRegister.cs" />
+    <Compile Include="classes\Registers\PCRegister.cs" />
+    <Compile Include="classes\Registers\SPRegister.cs" />
+    <Compile Include="classes\Registers\TRegister.cs" />
     <Compile Include="enums\AluOperations.cs" />
     <Compile Include="enums\DBusOperations.cs" />
     <Compile Include="enums\IndexValues.cs" />

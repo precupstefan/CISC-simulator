@@ -5,25 +5,29 @@ using System.Linq;
 using Assembly.enums;
 using Assembly.exceptions;
 using Assembly.helpers;
+using Microcode.classes;
+using GeneralRegisters = Assembly.enums.GeneralRegisters;
 
 namespace Assembly
 {
     public class Assembler
     {
         private List<string> instructions = new List<string>();
-        private ushort[] memory;
+        private Memory memory = Memory.Instance;
         private ushort pc = 0;
         private ushort pcIncrement = 1;
         private Dictionary<string, int> label = new Dictionary<string, int>();
         private Dictionary<int, string> flaggedInstructionsForLabel = new Dictionary<int, string>();
-
-        public Assembler(ushort[] memory)
+        private Logger.Logger Logger = global::Logger.Logger.Instance;
+        
+        public Assembler()
         {
-            this.memory = memory;
+            Logger.Log("Initializing Assembly process");
         }
 
         public void ReadFromFile(string path)
         {
+            Logger.Log("Reading from file...");
             var lines = File.ReadAllLines(path);
             foreach (var line in lines)
             {
@@ -34,6 +38,7 @@ namespace Assembly
 
                 instructions.Add(line.ToUpper());
             }
+            Logger.Log("Successfully read contents of file");
         }
 
         public List<string> GetInstructions()
@@ -43,6 +48,7 @@ namespace Assembly
 
         public void Assemble()
         {
+            Logger.Log("Starting assembly process...");
             foreach (var line in instructions)
             {
                 if (line.Contains(':'))
@@ -60,6 +66,8 @@ namespace Assembly
 
             if (flaggedInstructionsForLabel.Count != 0)
                 AddMissingLabelsToInstructions();
+            
+            Logger.Log("Assembly complete!");
         }
 
         private ushort GetInstruction(string operation)
@@ -290,7 +298,9 @@ namespace Assembly
 
                 var instructionPosition = flaggedInstruction.Key;
                 var desiredPosition = label[flaggedInstruction.Value];
-                var offset = desiredPosition > instructionPosition ? desiredPosition - instructionPosition : instructionPosition - desiredPosition;
+                var offset = desiredPosition > instructionPosition
+                    ? desiredPosition - instructionPosition
+                    : instructionPosition - desiredPosition;
                 if (offset > 127 || offset < -128)
                 {
                     throw new OffsetOutOfRangeException($"Label {flaggedInstruction.Value} is too far away");

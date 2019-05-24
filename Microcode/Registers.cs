@@ -37,7 +37,7 @@ namespace Microcode
 
 
         public short[] _GeneralRegisters = new short[15];
-        public short _Flags = 0;
+        public ushort _Flags = 0;
         public ushort _SP = ushort.MaxValue;
         public short _T = 0;
         public ushort _PC = 0;
