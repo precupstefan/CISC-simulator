@@ -5,7 +5,7 @@ using System.Linq;
 using Assembly.enums;
 using Assembly.exceptions;
 using Assembly.helpers;
-using Microcode.classes;
+using Architecture.classes;
 using GeneralRegisters = Assembly.enums.GeneralRegisters;
 
 namespace Assembly

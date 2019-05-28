@@ -1,4 +1,4 @@
-namespace Microcode.classes
+namespace Architecture.classes.Registers
 {
     public class ADRRegister : AbstractRegister<ushort>
     {

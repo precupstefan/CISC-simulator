@@ -156,6 +156,10 @@
       <Project>{083b0122-ecd6-47cb-bb41-4fd794778aff}</Project>
       <Name>Architecture</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sequencer\Sequencer.csproj">
+      <Project>{49cb0a36-67bb-49f8-bd7e-51a2bec6cb21}</Project>
+      <Name>Sequencer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

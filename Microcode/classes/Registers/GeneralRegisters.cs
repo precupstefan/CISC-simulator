@@ -1,4 +1,4 @@
-namespace Microcode.classes
+namespace Architecture.classes.Registers
 {
     public class GeneralRegisters : AbstractRegister<short[]>
     {
@@ -7,7 +7,11 @@ namespace Microcode.classes
         public override short[] Value
         {
             get => Registers.GeneralRegisters;
-            set => Registers.GeneralRegisters = value;
+            set
+            {
+                Registers.GeneralRegisters = value;
+                Registers.TriggerGeneralRegisterUpdate();
+            }
         }
     }
 }

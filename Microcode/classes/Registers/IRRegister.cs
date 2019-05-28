@@ -1,4 +1,7 @@
-namespace Microcode.classes
+using System;
+using Architecture.Helpers;
+
+namespace Architecture.classes.Registers
 {
     public class IRRegister : AbstractRegister<ushort>
     {
@@ -8,6 +11,12 @@ namespace Microcode.classes
         {
             get => Registers.IR;
             set => Registers.IR = value;
+        }
+
+        public byte GetJumpOffset()
+        {
+            var mask = (ushort) Math.Pow(2, Constants.JumpOffsetSize) - 1;
+            return (byte) (Value & mask);
         }
     }
 }

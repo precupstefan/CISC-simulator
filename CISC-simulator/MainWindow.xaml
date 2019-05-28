@@ -26,97 +26,97 @@
                         <Label x:Name="R0Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R0" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R0Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R0Value" Text="{Binding GetGeneralRegister[0]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R1Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R1" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R1Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R1Value" Text="{Binding GetGeneralRegister[1]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R2Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R2" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R2Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R2Value" Text="{Binding GetGeneralRegister[2]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R3Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R3" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R3Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R3Value" Text="{Binding GetGeneralRegister[3]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R4Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R4" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R4Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R4Value" Text="{Binding GetGeneralRegister[4]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R5Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R5" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R5Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R5Value" Text="{Binding GetGeneralRegister[5]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R6Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R6" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R6Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R6Value" Text="{Binding GetGeneralRegister[6]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R7Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R7" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R7Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R7Value" Text="{Binding GetGeneralRegister[7]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R8Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R8" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R8Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R8Value" Text="{Binding GetGeneralRegister[8]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R9Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R9" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R9Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R9Value" Text="{Binding GetGeneralRegister[9]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R10Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R10" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R10Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R10Value" Text="{Binding GetGeneralRegister[10]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R11Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R11" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R11Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R11Value" Text="{Binding GetGeneralRegister[11]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R12Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R12" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R12Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R12Value" Text="{Binding GetGeneralRegister[12]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R13Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R13" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R13Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R13Value" Text="{Binding GetGeneralRegister[13]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R14Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R14" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R14Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R14Value" Text="{Binding GetGeneralRegister[14]}"/>
                             </StackPanel>
                         </Label>
                         <Label x:Name="R15Label" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,5,0,10">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="R15" Margin="0,0,5,0"/>
-                                <TextBlock x:Name="R15Value" Text="0000000000000000"/>
+                                <TextBlock x:Name="R15Value" Text="{Binding GetGeneralRegister[15]}"/>
                             </StackPanel>
                         </Label>
                     </StackPanel>
@@ -166,13 +166,13 @@
                     <Label x:Name="IRLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="IR" Margin="0,0,5,0"/>
-                            <TextBlock x:Name="IRValue" Text="0000000000000000"/>
+                            <TextBlock x:Name="IRValue" Text="{Binding GetIR}"/>
                         </StackPanel>
                     </Label>
                     <Label x:Name="MDRLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="MDR" Margin="0,0,5,0"/>
-                            <TextBlock x:Name="MDRValue" Text="0000000000000000"/>
+                            <TextBlock x:Name="MDRValue" Text="{Binding GetMDR}"/>
                         </StackPanel>
                     </Label>
                     <Label x:Name="SPLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
@@ -184,31 +184,31 @@
                     <Label x:Name="ADRLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="ADR" Margin="0,0,5,0"/>
-                            <TextBlock x:Name="ADRValue" Text="0000000000000000"/>
+                            <TextBlock x:Name="ADRValue" Text="{Binding GetADR}"/>
                         </StackPanel>
                     </Label>
                     <Label x:Name="TLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="T" Margin="0,0,5,0"/>
-                            <TextBlock x:Name="TValue" Text="0000000000000000"/>
+                            <TextBlock x:Name="TValue" Text="{Binding GetT}"/>
                         </StackPanel>
                     </Label>
                     <Label x:Name="PCLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="PC" Margin="0,0,5,0"/>
-                            <TextBlock x:Name="PCValue" Text="0000000000000000"/>
+                            <TextBlock x:Name="PCValue" Text="{Binding GetPC}"/>
                         </StackPanel>
                     </Label>
                     <Label x:Name="IVRLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="IVR" Margin="0,0,5,0"/>
-                            <TextBlock x:Name="IVRValue" Text="0000000000000000"/>
+                            <TextBlock x:Name="IVRValue" Text="{Binding GetIVR}"/>
                         </StackPanel>
                     </Label>
                     <Label x:Name="FlagsLabel" BorderThickness="3" BorderBrush="Black" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="210" HorizontalContentAlignment="Center" Margin="0,15,0,15">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="FLAG" Margin="0,0,5,0"/>
-                            <TextBlock x:Name="FlagValue" Text="0000000000000000"/>
+                            <TextBlock x:Name="FlagValue" Text="{Binding GetFlags}"/>
                         </StackPanel>
                     </Label>
                 </StackPanel>
@@ -280,7 +280,7 @@
                     <Button x:Name="AssembleButton" Content="Assemble" Height="20" Margin="15,0" Click="AssembleButton_Click"/>
                 </StackPanel>
             </Grid>
-
+            <Button Content="Step" Height="100" Width="100" Click="StepButton_Click"/>
             <Grid x:Name="ConsoleGrid" Height="200" VerticalAlignment="Bottom">
                 <ScrollViewer>
                     <TextBlock x:Name="Console" Background="Black" Foreground="#FF5DFF00" Padding="10" FontSize="15">

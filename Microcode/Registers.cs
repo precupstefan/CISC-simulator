@@ -1,11 +1,13 @@
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Dynamic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using Microcode.Annotations;
+using Architecture.Annotations;
 
-namespace Microcode
+namespace Architecture
 {
     public class Registers : INotifyPropertyChanged
     {
@@ -35,8 +37,12 @@ namespace Microcode
             }
         }
 
+        public void TriggerGeneralRegisterUpdate()
+        {
+            GeneralRegisters = GeneralRegisters;
+        }
 
-        public short[] _GeneralRegisters = new short[15];
+        public short[] _GeneralRegisters = new short[16];
         public ushort _Flags = 0;
         public ushort _SP = ushort.MaxValue;
         public short _T = 0;
@@ -147,7 +153,7 @@ namespace Microcode
         {
             get
             {
-                string[] something = new string[15];
+                string[] something = new string[16];
                 for (int i = 0; i < _GeneralRegisters.Length; i++)
                 {
                     something[i] = ConvertToStringAsBinOrHex(_GeneralRegisters[i]);
@@ -186,9 +192,9 @@ namespace Microcode
             switch (variable)
             {
                 case short _:
-                    return Convert.ToString((short) (object) variable, 2);
+                    return Convert.ToString((short) (object) variable, 2).PadLeft(16,'0');
                 case ushort _:
-                    return Convert.ToString((ushort) (object) variable, 2);
+                    return Convert.ToString((ushort) (object) variable, 2).PadLeft(16,'0');
                 default:
                     throw new FormatException($"{variable.GetType()} is not implemented");
             }
@@ -199,9 +205,9 @@ namespace Microcode
             switch (variable)
             {
                 case short _:
-                    return "0x" + Convert.ToString((short) (object) variable, 16);
+                    return "0x" + Convert.ToString((short) (object) variable, 16).PadLeft(4,'0');
                 case ushort _:
-                    return "0x" + Convert.ToString((ushort) (object) variable, 16);
+                    return "0x" + Convert.ToString((ushort) (object) variable, 16).PadLeft(4,'0');
                 default:
                     throw new FormatException($"{variable.GetType()} is not implemented");
             }

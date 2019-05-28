@@ -1,4 +1,4 @@
-namespace Microcode.classes
+namespace Architecture.classes.Registers
 {
     public class FLAGRegister : AbstractRegister<ushort>
     {

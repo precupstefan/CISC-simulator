@@ -1,18 +1,18 @@
-namespace Microcode.enums
+namespace Architecture.enums
 {
     public enum JumpyStuff : ushort
     {
-        NONE=0000,
-        STEP=0001,
-        JuMP=0010,
-        JUMPI=0011,
+        NONE=0,
+        STEP=1,
+        JuMP=2,
+        JUMPI=3,
 //        IF( N) INTR eticheta else STEP=0100,
-        B1=0101,
-        AD=0110,
-        Z=0111,
-        C=1000,
-        V=1001,
-        S=1010,
-        INTR=1011,
+        B1=4,
+        AD=5,
+        Z=6,
+        C=7,
+        V=8,
+        S=9,
+        INTR=10,
     }
 }

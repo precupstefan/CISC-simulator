@@ -1,4 +1,4 @@
-namespace Microcode.enums
+namespace Architecture.enums
 {
     public enum IndexValues : ushort
     {

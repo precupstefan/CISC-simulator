@@ -14,9 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Assembly;
-using Microcode;
-using Microcode.classes;
+using Architecture;
+using Architecture.classes;
 using Logger;
+using Architecture.classes.Bus;
 
 namespace CISC_simulator
 {
@@ -26,9 +27,10 @@ namespace CISC_simulator
     public partial class MainWindow : Window
     {
         MPM mpms = new MPM();
-        Registers registers = new Registers();
+        Registers registers = global::Architecture.Registers.Instance;
 
-        private String selectedFile = "";
+        private String selectedFile = @"C:\Users\psa97\Documents\Facultate\AN3\PROIECT_MIHU\CISC-simulator\whatever.txt.txt";
+        private bool assembled = false;
 
         private Logger.Logger Logger = global::Logger.Logger.Instance;
 
@@ -38,11 +40,11 @@ namespace CISC_simulator
             Logger.SetConsole(Console);
             Logger.Info("Application started");
             DataContext = registers;
+
         }
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
-            registers.SP = 44;
             OpenFileDialog fileDialog = new OpenFileDialog();
             if (fileDialog.ShowDialog() != true) return;
             selectedFile = fileDialog.FileName;
@@ -57,6 +59,7 @@ namespace CISC_simulator
                 Assembler assembler = new Assembler();
                 assembler.ReadFromFile(selectedFile);
                 assembler.Assemble();
+                assembled = true;
             }
             else
             {
@@ -70,6 +73,12 @@ namespace CISC_simulator
 
         private void StepButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!assembled)
+            {
+                Logger.Error("NO ASSEMBLY CODE FOUND. PLEASE ASSEMBLE SOME");
+                return;
+            }
+            Sequencer.Sequencer.Instance.ExecuteCycle();
         }
 
         private void RunButton_Click(object sender, RoutedEventArgs e)

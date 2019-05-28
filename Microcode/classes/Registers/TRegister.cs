@@ -1,4 +1,4 @@
-namespace Microcode.classes.Bus
+namespace Architecture.classes.Registers
 {
     public class TRegister : AbstractRegister<short>
     {
