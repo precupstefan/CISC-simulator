@@ -18,5 +18,17 @@ namespace Architecture.classes.Registers
             var mask = (ushort) Math.Pow(2, Constants.JumpOffsetSize) - 1;
             return (byte) (Value & mask);
         }
+
+        public bool isNegTOrFalse()
+        {
+            var value = Value >> Constants.IndexJumpSize + Constants.JumpOffsetSize;
+            return (value & 1) != 1;
+        }
+
+        public bool IsDestinationDirectlyAddressed()
+        {
+            var value = InstructionHelper.Instance.GetShiftedInstructionByBits(4);
+            return (value & 3) == 1;
+        }
     }
 }

@@ -26,12 +26,13 @@ namespace Architecture.classes.Bus
                     case RBusOperations.NONE: return;
                     case RBusOperations.PmRG:
                         GeneralRegisters.Instance.Value[GetRBusRegister()] = (short)this.value;
+                        Architecture.Registers.Instance.TriggerGeneralRegisterUpdate();
                         break;
                     case RBusOperations.PmIR:
                         IRRegister.Instance.Value = this.value;
                         break;
                     case RBusOperations.PmMdr:
-                        MDRRegister.Instance.Value = this.value;
+                        MDRRegister.Instance.Value = (short) this.value;
                         break;
                     case RBusOperations.PmSP:
                         SPRegister.Instance.Value = this.value;

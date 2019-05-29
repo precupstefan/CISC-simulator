@@ -23,8 +23,8 @@ namespace Architecture.classes
         {
             var mir = MIR.Instance;
             var aluOperation = (ushort) (mir.Value >> Constants.AluIndex);
-            var mask = 2 ^ Constants.AluSize - 1;
-            aluOperation = (ushort) (aluOperation & mask);
+            var mask = Math.Pow(2, Constants.AluSize )- 1;
+            aluOperation = (ushort) (aluOperation & (int) mask);
             switch ((AluOperations) aluOperation)
             {
                 case AluOperations.NONE:

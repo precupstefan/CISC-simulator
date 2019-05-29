@@ -7,11 +7,7 @@ namespace Architecture.classes.Registers
         public override short[] Value
         {
             get => Registers.GeneralRegisters;
-            set
-            {
-                Registers.GeneralRegisters = value;
-                Registers.TriggerGeneralRegisterUpdate();
-            }
+            set => Registers.GeneralRegisters = value;
         }
     }
 }

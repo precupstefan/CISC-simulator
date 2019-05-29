@@ -55,7 +55,7 @@ namespace Sequencer
         private void CheckForOtherOperationsAndExecuteIfPresent()
         {
             var instr = MIR.Instance.Value;
-            var mask = 2 ^ Constants.OtherOperationsSize - 1;
+            var mask = (ushort) Math.Pow(2, Constants.OtherOperationsSize) - 1;
             var operation = (ushort) (instr >> Constants.OtherOperationsIndex);
             operation = (ushort) (operation & mask);
             switch ((ShiftAndOtherOperations) operation)
@@ -102,9 +102,9 @@ namespace Sequencer
 
         public void ExecuteCycle()
         {
-            Logger.Warning("I AM DOING STEP");
             Step();
             Step();
+            Logger.Warning($"MICROINSTRUCTION {Convert.ToString((long) MIR.Instance.Value, 16).PadLeft(10, '0')}");
         }
 
         public void Execute()

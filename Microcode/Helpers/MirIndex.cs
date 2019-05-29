@@ -6,26 +6,26 @@ using Architecture.enums;
 
 namespace Architecture.Helpers
 {
-    public class Index
+    public class MirIndex
     {
-        public static Index Instance { get; } = new Index();
+        public static MirIndex Instance { get; } = new MirIndex();
 
         public byte GetIndexValue()
         {
-            var ir = IRRegister.Instance;
-            var mask = (ushort)Math.Pow(2 , Constants.JumpOffsetSize) - 1;
-            var index = ir.Value & mask;
+            var ir = MIR.Instance;
+            var mask = (ushort) Math.Pow(2, Constants.JumpOffsetSize) - 1;
+            var index = ir.Value & (ulong) mask;
 
             switch ((IndexValues) index)
             {
                 case IndexValues.INDEX0:
                     return 0;
                 case IndexValues.INDEX1:
-                    return GetClass();
+                    return InstructionHelper.Instance.GetInstructionClass();
                 case IndexValues.INDEX2:
-                    return (byte) (MAS()<<1);
+                    return (byte) (MAS() << 1);
                 case IndexValues.INDEX3:
-                    return (byte) (MAD()<<1);
+                    return (byte) (MAD() << 1);
                 case IndexValues.INDEX4:
                     return OpCodeB1();
                 case IndexValues.INDEX5:
@@ -73,40 +73,39 @@ namespace Architecture.Helpers
 
         private byte MAS()
         {
-            var value = InstructionHelper.Instance.GetShiftedMicroInstructionByBits(10);
+            var value = InstructionHelper.Instance.GetShiftedInstructionByBits(10);
             return (byte) (value & 3);
         }
 
         private byte MAD()
         {
-            var value = InstructionHelper.Instance.GetShiftedMicroInstructionByBits(4);
+            var value = InstructionHelper.Instance.GetShiftedInstructionByBits(4);
             return (byte) (value & 3);
         }
 
         private byte OpCodeB1()
         {
-            var shiftedValue = InstructionHelper.Instance.GetShiftedMicroInstructionByBits(12);
-            return (byte) (shiftedValue & 7);
+            var shiftedValue = InstructionHelper.Instance.GetShiftedInstructionByBits(12);
+            return (byte) ((shiftedValue & 7) << 1);
         }
 
 
         private byte OpCodeB2()
         {
-            var shiftedValue = InstructionHelper.Instance.GetShiftedMicroInstructionByBits(6);
-            return (byte) (shiftedValue & 0xF);
+            var shiftedValue = InstructionHelper.Instance.GetShiftedInstructionByBits(6);
+            return (byte) ((shiftedValue & 0xF) << 2);
         }
 
         private byte OpCodeB3()
         {
-            var shiftedValue = InstructionHelper.Instance.GetShiftedMicroInstructionByBits(8);
-            return (byte) (shiftedValue & 0xF);
+            var shiftedValue = InstructionHelper.Instance.GetShiftedInstructionByBits(8);
+            return (byte) ((shiftedValue & 0xF) << 1);
         }
 
         private byte OpCodeB4()
         {
             var instruction = IRRegister.Instance.Value;
-            return (byte) (instruction & 0XFFF);
+            return (byte) ((instruction & 0XFFF)<<2);
         }
-
     }
 }

@@ -15,7 +15,7 @@ namespace Architecture.classes.Bus
             {
                 var mir = MIR.Instance;
                 var dbusMicroInstruction = (ushort) (mir.Value >> Constants.DBusIndex);
-                var mask = 2 ^ Constants.DBusSize - 1;
+                var mask = (ushort) Math.Pow(2, Constants.DBusSize) - 1;
                 dbusMicroInstruction = (ushort) (dbusMicroInstruction & mask);
                 switch ((DBusOperations) dbusMicroInstruction)
                 {
@@ -39,7 +39,7 @@ namespace Architecture.classes.Bus
             }
             set => throw new System.NotImplementedException();
         }
-        
+
         private int GetDBusRegister()
         {
             var value = IRRegister.Instance.Value;

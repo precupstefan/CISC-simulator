@@ -14,9 +14,9 @@ namespace Architecture.classes.Registers
             var mir = MIR.Instance;
             var instruction = mir.Value;
             var jumpyStuff = (ushort) (instruction >> Constants.JumpyStuffIndex);
-            var mask = (ushort) Math.Pow(2,Constants.JumpyStuffSize) - 1;
+            var mask = (ushort) Math.Pow(2, Constants.JumpyStuffSize) - 1;
             jumpyStuff = (ushort) (jumpyStuff & mask);
-            switch((JumpyStuff) jumpyStuff)
+            switch ((JumpyStuff) jumpyStuff)
             {
                 case JumpyStuff.NONE:
                     return;
@@ -27,12 +27,32 @@ namespace Architecture.classes.Registers
                     Value = mir.GetJumpIndex();
                     break;
                 case JumpyStuff.JUMPI:
-                    Value = mir.GetJumpIndex();
-                    Value += Index.Instance.GetIndexValue();
+                    SetJumpIndexedValue(mir);
                     break;
                 case JumpyStuff.B1:
+                    if ((InstructionHelper.Instance.GetInstructionClass() == 0) 
+//                        &&
+//                        IRRegister.Instance.isNegTOrFalse()
+                        )
+                    {
+                        SetJumpIndexedValue(mir);
+                    }
+                    else
+                    {
+                        Value++;
+                    }
+
                     break;
                 case JumpyStuff.AD:
+                    if (IRRegister.Instance.IsDestinationDirectlyAddressed())
+                    {
+                        Value = mir.GetJumpIndex();
+                    }
+                    else
+                    {
+                        Value++;
+                    }
+
                     break;
                 case JumpyStuff.Z:
                     break;
@@ -43,10 +63,25 @@ namespace Architecture.classes.Registers
                 case JumpyStuff.S:
                     break;
                 case JumpyStuff.INTR:
+                    if (State.Instance.Interrupt)
+                    {
+                        SetJumpIndexedValue(mir);
+                    }
+                    else
+                    {
+                        Value++;
+                    }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void SetJumpIndexedValue(MIR mir)
+        {
+            Value = mir.GetJumpIndex();
+            Value += MirIndex.Instance.GetIndexValue();
         }
     }
 }

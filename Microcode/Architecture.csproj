@@ -88,7 +88,7 @@
     <Compile Include="enums\SBusOperations.cs" />
     <Compile Include="enums\ShiftAndOtherOperations.cs" />
     <Compile Include="Helpers\Constants.cs" />
-    <Compile Include="Helpers\Index.cs" />
+    <Compile Include="Helpers\MirIndex.cs" />
     <Compile Include="Helpers\InstructionHelper.cs" />
     <Compile Include="MPM.cs" />
     <Compile Include="Properties\Annotations.cs" />
