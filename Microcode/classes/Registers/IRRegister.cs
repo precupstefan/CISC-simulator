@@ -19,12 +19,6 @@ namespace Architecture.classes.Registers
             return (byte) (Value & mask);
         }
 
-        public bool isNegTOrFalse()
-        {
-            var value = Value >> Constants.IndexJumpSize + Constants.JumpOffsetSize;
-            return (value & 1) != 1;
-        }
-
         public bool IsDestinationDirectlyAddressed()
         {
             var value = InstructionHelper.Instance.GetShiftedInstructionByBits(4);

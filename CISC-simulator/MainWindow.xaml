@@ -278,6 +278,7 @@
                     <Label x:Name="SelectedFileLabel" Content="None" FontSize="20" FontWeight="Bold" Margin="0,0,20,0"/>
                     <Button x:Name="SelectFileButton" Content="Select File" Height="20" Margin="0,0,0,0" Click="SelectFileButton_Click"/>
                     <Button x:Name="AssembleButton" Content="Assemble" Height="20" Margin="15,0" Click="AssembleButton_Click"/>
+                    <Button x:Name="SaveToFileButton" Content="Save To Binary Code to File" Height="20" Margin="15,0" Click="SaveToFileButton_Click"/>
                 </StackPanel>
             </Grid>
             <Button Content="Step" Height="100" Width="100" Click="StepButton_Click"/>
@@ -287,6 +288,8 @@
                     </TextBlock>
                 </ScrollViewer>
             </Grid>
+            <Button x:Name="FullExecutionButton" Content="Full Execution" HorizontalAlignment="Left" Margin="584,436,0,0" VerticalAlignment="Top" Width="145" Height="100"
+                    Click="FullExecutionButton_OnClick"/>
         </Grid>
 
     </Grid>

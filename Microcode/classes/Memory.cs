@@ -27,8 +27,61 @@ namespace Architecture.classes
         private void IFCH()
         {
             var ir = IRRegister.Instance;
-            var pc = PCRegister.Instance;
-            ir.Value = memory[pc.Value];
+            var adr = ADRRegister.Instance;
+            ir.Value = memory[adr.Value];
+            CheckFOrIllegalInstruction();
+        }
+
+        private void CheckFOrIllegalInstruction()
+        {
+            var instruction = IRRegister.Instance.Value;
+            switch (InstructionHelper.Instance.GetInstructionClass())
+            {
+                case 0:
+                    if ((instruction & 0x7000) == 0x7000)
+                    {
+                        State.Instance.Halt = true;
+                        throw new Exception("ILLEGAL B1 Instruction");
+                    }
+
+                    break;
+                case 1:
+                    instruction = (ushort) (instruction & 0x9FC0);
+                    if (instruction >> 12 != 0 || instruction >> 11 != 0 || instruction >> 10 != 0)
+                    {
+                        State.Instance.Halt = true;
+                        throw new Exception("ILLEGAL B2 Instruction");
+                    }
+
+                    var shiftedInstruction = (instruction >> 6) & 0xF;
+                    if (shiftedInstruction == 0xF)
+                    {
+                        State.Instance.Halt = true;
+                        throw new Exception("ILLEGAL B2 Instruction");
+                    }
+
+                    break;
+                case 3:
+                    instruction = (ushort) ((instruction & 0xDF00) >> 8);
+                    if (instruction >= 0xC9)
+                    {
+                        State.Instance.Halt = true;
+                        throw new Exception("ILLEGAL B3 Instruction");
+                    }
+
+                    break;
+                case 2:
+                    if (instruction > 0xE012)
+                    {
+                        State.Instance.Halt = true;
+                        throw new Exception("ILLEGAL B3 Instruction");
+                    }
+
+                    break;
+                default:
+                    throw new NotSupportedException("INVALID CLASS");
+            }
+
         }
 
         private void WriteToMemory()

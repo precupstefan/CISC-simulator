@@ -30,10 +30,7 @@ namespace Architecture.classes.Registers
                     SetJumpIndexedValue(mir);
                     break;
                 case JumpyStuff.B1:
-                    if ((InstructionHelper.Instance.GetInstructionClass() == 0) 
-//                        &&
-//                        IRRegister.Instance.isNegTOrFalse()
-                        )
+                    if ((InstructionHelper.Instance.GetInstructionClass() == 0) && MIR.Instance.isNegTOrFalse())
                     {
                         SetJumpIndexedValue(mir);
                     }
@@ -44,7 +41,7 @@ namespace Architecture.classes.Registers
 
                     break;
                 case JumpyStuff.AD:
-                    if (IRRegister.Instance.IsDestinationDirectlyAddressed())
+                    if (IRRegister.Instance.IsDestinationDirectlyAddressed() && MIR.Instance.isNegTOrFalse())
                     {
                         Value = mir.GetJumpIndex();
                     }
@@ -55,12 +52,48 @@ namespace Architecture.classes.Registers
 
                     break;
                 case JumpyStuff.Z:
+                    if (FLAGRegister.Instance.GetZeroFlag() == MIR.Instance.isNegTOrFalse())
+                    {
+                        SetJumpIndexedValue(mir);
+                    }
+                    else
+                    {
+                        Value++;
+                    }
+
                     break;
                 case JumpyStuff.C:
+                    if (FLAGRegister.Instance.GetCarryFlag() == MIR.Instance.isNegTOrFalse())
+                    {
+                        SetJumpIndexedValue(mir);
+                    }
+                    else
+                    {
+                        Value++;
+                    }
+
                     break;
                 case JumpyStuff.V:
+                    if (FLAGRegister.Instance.GetOverflowFlag() == MIR.Instance.isNegTOrFalse())
+                    {
+                        SetJumpIndexedValue(mir);
+                    }
+                    else
+                    {
+                        Value++;
+                    }
+
                     break;
                 case JumpyStuff.S:
+                    if (FLAGRegister.Instance.GetSignFlag() == MIR.Instance.isNegTOrFalse())
+                    {
+                        SetJumpIndexedValue(mir);
+                    }
+                    else
+                    {
+                        Value++;
+                    }
+
                     break;
                 case JumpyStuff.INTR:
                     if (State.Instance.Interrupt)

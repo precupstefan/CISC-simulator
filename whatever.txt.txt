@@ -1,3 +1,2 @@
-mov R5 4
-mov R6 2
-add r5 r6
+push_pc
+halt

@@ -17,5 +17,6 @@ namespace Architecture.enums
         SEZ = 12,
         SES = 13,
         SCC = 14,
+        BP0 = 15
     }
 }

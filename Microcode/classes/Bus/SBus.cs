@@ -31,7 +31,7 @@ namespace Architecture.classes.Bus
                     case SBusOperations.PdIVR: return IVRRegister.Instance.Value;
                     case SBusOperations.PdFlag: return FLAGRegister.Instance.Value;
                     case SBusOperations.PD_1: return -1;
-                    case SBusOperations.PdIR_OFFSET: return (IRRegister.Instance.Value & 255);
+                    case SBusOperations.PdIR_OFFSET: return (IRRegister.Instance.Value & 0xFF);
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

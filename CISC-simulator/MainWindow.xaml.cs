@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +28,10 @@ namespace CISC_simulator
     public partial class MainWindow : Window
     {
         MPM mpms = new MPM();
-        Registers registers = global::Architecture.Registers.Instance;
 
-        private String selectedFile = @"C:\Users\psa97\Documents\Facultate\AN3\PROIECT_MIHU\CISC-simulator\whatever.txt.txt";
+        private String selectedFile =
+            @"C:\Users\psa97\Documents\Facultate\AN3\PROIECT_MIHU\CISC-simulator\whatever.txt.txt";
+
         private bool assembled = false;
 
         private Logger.Logger Logger = global::Logger.Logger.Instance;
@@ -39,8 +41,7 @@ namespace CISC_simulator
             InitializeComponent();
             Logger.SetConsole(Console);
             Logger.Info("Application started");
-            DataContext = registers;
-
+            DataContext = global::Architecture.Registers.Instance;
         }
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
@@ -56,10 +57,11 @@ namespace CISC_simulator
         {
             if (selectedFile != "")
             {
-                Assembler assembler = new Assembler();
+                var assembler = new Assembler();
                 assembler.ReadFromFile(selectedFile);
                 assembler.Assemble();
                 assembled = true;
+                State.Instance.Halt = false;
             }
             else
             {
@@ -73,16 +75,60 @@ namespace CISC_simulator
 
         private void StepButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!assembled)
-            {
-                Logger.Error("NO ASSEMBLY CODE FOUND. PLEASE ASSEMBLE SOME");
-                return;
-            }
+            if (!IsProgramAssembled()) return;
+
             Sequencer.Sequencer.Instance.ExecuteCycle();
         }
 
+        private bool IsProgramAssembled()
+        {
+            if (assembled) return true;
+            Logger.Error("NO ASSEMBLY CODE FOUND. PLEASE ASSEMBLE SOME");
+            return false;
+        }
+
+
         private void RunButton_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void FullExecutionButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!IsProgramAssembled()) return;
+
+            Sequencer.Sequencer.Instance.ExecuteFullCycle();
+        }
+
+        private void SaveToFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!assembled)
+            {
+                Logger.Error("CAN NOT SAVE UNCOMPILED ASSEMBLY CODE");
+                return;
+            }
+
+            string path = @"C:\Users\psa97\Desktop\assembly_code.bin";
+            try
+            {
+                using (BinaryWriter binWriter =
+                    new BinaryWriter(File.Open(path, FileMode.Create)))
+                {
+                    var memory = Memory.Instance;
+                    int indx = 0;
+                    while (memory[indx] != 0)
+                    {
+                        binWriter.Write(memory[indx]);
+                        indx++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.ToString());
+                return;
+            }
+
+            Logger.Info($"Successfully written code to file to {path}");
         }
     }
 }

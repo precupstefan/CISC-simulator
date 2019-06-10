@@ -21,7 +21,11 @@ namespace Sequencer
 
         private void Step()
         {
-            if (state.Halt) return;
+            if (state.Halt)
+            {
+                Logger.Error("Program reached HALT State. Please reassemble the program");
+                return;
+            }
 
             switch (state.InstructionExecutionStep)
             {
@@ -38,8 +42,8 @@ namespace Sequencer
                 case 1:
                 {
                     ALU.DoOperation();
+                    MIR.Instance.CheckForOtherOperationsAndExecuteIfPresent();
                     Memory.CheckForOperationAndExecuteIfPresent();
-                    CheckForOtherOperationsAndExecuteIfPresent();
                     MAR.Instance.PrepareForNextMicroInstruction();
                     state.InstructionExecutionStep = 0;
                     break;
@@ -52,54 +56,6 @@ namespace Sequencer
             }
         }
 
-        private void CheckForOtherOperationsAndExecuteIfPresent()
-        {
-            var instr = MIR.Instance.Value;
-            var mask = (ushort) Math.Pow(2, Constants.OtherOperationsSize) - 1;
-            var operation = (ushort) (instr >> Constants.OtherOperationsIndex);
-            operation = (ushort) (operation & mask);
-            switch ((ShiftAndOtherOperations) operation)
-            {
-                case ShiftAndOtherOperations.None:
-                    break;
-                case ShiftAndOtherOperations.plus1PC:
-                    PCRegister.Instance.Value++;
-                    break;
-                case ShiftAndOtherOperations.plus1Sp:
-                    SPRegister.Instance.Value++;
-                    break;
-                case ShiftAndOtherOperations.minus1SP:
-                    SPRegister.Instance.Value--;
-                    break;
-                case ShiftAndOtherOperations.PdFLAGS:
-                    // TODO: IMPLEMENT PDFLAGS
-                    FLAGRegister.Instance.Value = 0;
-                    break;
-                case ShiftAndOtherOperations.CLC:
-                    break;
-                case ShiftAndOtherOperations.CLV:
-                    break;
-                case ShiftAndOtherOperations.CLZ:
-                    break;
-                case ShiftAndOtherOperations.CLS:
-                    break;
-                case ShiftAndOtherOperations.CCC:
-                    break;
-                case ShiftAndOtherOperations.SEC:
-                    break;
-                case ShiftAndOtherOperations.SEV:
-                    break;
-                case ShiftAndOtherOperations.SEZ:
-                    break;
-                case ShiftAndOtherOperations.SES:
-                    break;
-                case ShiftAndOtherOperations.SCC:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
         public void ExecuteCycle()
         {
             Step();
@@ -107,8 +63,13 @@ namespace Sequencer
             Logger.Warning($"MICROINSTRUCTION {Convert.ToString((long) MIR.Instance.Value, 16).PadLeft(10, '0')}");
         }
 
-        public void Execute()
+        public void ExecuteFullCycle()
         {
+            while (!State.Instance.Halt)
+            {
+                Step();
+            }
+            Logger.Warning("Finished execution of program");
         }
     }
 }
