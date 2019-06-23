@@ -267,8 +267,8 @@ namespace Assembly
 
         private void AddValueToMemory(string value)
         {
-            var _value = Convert.ToUInt16(value);
-            memory[pc + pcIncrement] = _value;
+            var _value = Convert.ToInt16(value);
+            memory[pc + pcIncrement] = (ushort)_value;
             pcIncrement++;
         }
 

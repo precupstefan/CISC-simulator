@@ -131,8 +131,8 @@ namespace Architecture.classes
 
         private static void RLC()
         {
-            SetRBusValue(DBus.Value << 1 | FLAGRegister.Instance.GetCarryFlag());
-            FLAGRegister.Instance.SetCarryFlag(DBus.Value & 0x1000);
+            SetRBusValue(DBus.Value << 1 | Convert.ToByte(FLAGRegister.Instance.GetCarryFlag()));
+            FLAGRegister.Instance.SetCarryFlag((DBus.Value & 0x8000) > 1);
         }
 
         private static void RRC()

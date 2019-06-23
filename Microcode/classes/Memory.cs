@@ -47,7 +47,7 @@ namespace Architecture.classes
                     break;
                 case 1:
                     instruction = (ushort) (instruction & 0x9FC0);
-                    if (instruction >> 12 != 0 || instruction >> 11 != 0 || instruction >> 10 != 0)
+                    if ((instruction & 0x9FC0) >= 0x9fc0)
                     {
                         State.Instance.Halt = true;
                         throw new Exception("ILLEGAL B2 Instruction");
@@ -81,7 +81,6 @@ namespace Architecture.classes
                 default:
                     throw new NotSupportedException("INVALID CLASS");
             }
-
         }
 
         private void WriteToMemory()

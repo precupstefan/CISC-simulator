@@ -38,10 +38,10 @@ namespace Architecture.classes.Registers
                     PCRegister.Instance.Value++;
                     break;
                 case ShiftAndOtherOperations.plus1Sp:
-                    SPRegister.Instance.Value++;
+                    SPRegister.Instance.Value--;
                     break;
                 case ShiftAndOtherOperations.minus1SP:
-                    SPRegister.Instance.Value--;
+                    SPRegister.Instance.Value++;
                     break;
                 case ShiftAndOtherOperations.PdFLAGS:
                     // TODO: IMPLEMENT PDFLAGS

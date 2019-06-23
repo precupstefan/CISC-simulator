@@ -44,7 +44,7 @@ namespace Architecture.classes.Bus
                         TRegister.Instance.Value = (short)this.value;
                         break;
                     case RBusOperations.PmPc:
-                        PCRegister.Instance.Value = this.value;
+                        PCRegister.Instance.Value = (ushort)this.value;
                         break;
                     case RBusOperations.PmIVR:
                         IVRRegister.Instance.Value = this.value;
